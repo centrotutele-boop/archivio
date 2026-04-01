@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Diritto all'Oblio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Dashboard “Diritto all'Oblio”</h1>
+      <p>Gestione casi, scadenze, azioni legali ed egosurfing con dati persistenti nel browser.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>🔍 Modulo Egosurfing</h2>
+        <form id="egosurfing-form" class="grid-form">
+          <label>
+            Cognome
+            <input required name="lastName" />
+          </label>
+          <label>
+            Nome
+            <input required name="firstName" />
+          </label>
+          <label class="full">
+            Alias / Varianti (separati da virgola)
+            <input name="aliases" placeholder="es. Mario Rossi, M. Rossi" />
+          </label>
+          <label>
+            Perimetro
+            <select name="scope">
+              <option value="Italia">Italia 🇮🇹</option>
+              <option value="Europa">Europa 🇪🇺</option>
+              <option value="Mondo">Mondo 🌍</option>
+            </select>
+          </label>
+          <button type="submit">Avvia screening</button>
+        </form>
+        <div id="screening-result"></div>
+      </section>
+
+      <section class="card">
+        <h2>📋 Gestione Casi</h2>
+        <form id="case-form" class="grid-form">
+          <label>
+            Richiedente
+            <select id="requesterSelect" name="requesterId" required></select>
+          </label>
+          <label>
+            Profilo soggetto
+            <select name="profileType">
+              <option>Pubblico</option>
+              <option>Privato</option>
+            </select>
+          </label>
+          <label class="full">
+            URL
+            <input type="url" name="url" required placeholder="https://..." />
+          </label>
+          <label>
+            Categoria URL
+            <select name="category">
+              <option>Obsoleto</option>
+              <option>Inesatto</option>
+              <option>Illecito</option>
+            </select>
+          </label>
+          <button type="submit">Aggiungi URL al caso</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>📡 Tracker Richieste</h2>
+        <form id="tracker-form" class="grid-form">
+          <label>
+            Caso
+            <select id="trackerCaseSelect" name="caseId" required></select>
+          </label>
+          <label>
+            Destinatario
+            <select name="engine">
+              <option>Google</option>
+              <option>Bing</option>
+              <option>Yahoo</option>
+              <option>Webmaster</option>
+            </select>
+          </label>
+          <label>
+            Stato
+            <select name="status">
+              <option>In attesa</option>
+              <option>Approvato</option>
+              <option>Rifiutato</option>
+              <option>Silenzio</option>
+            </select>
+          </label>
+          <label>
+            Data invio
+            <input type="date" name="sentDate" required />
+          </label>
+          <button type="submit">Registra richiesta</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>⚖️ Azioni Legali</h2>
+        <form id="legal-form" class="grid-form">
+          <label>
+            Caso
+            <select id="legalCaseSelect" name="caseId" required></select>
+          </label>
+          <label>
+            Tipo azione
+            <select name="actionType">
+              <option>Reclamo al Garante (Art. 77)</option>
+              <option>Segnalazione (Art. 144)</option>
+              <option>Ricorso giurisdizionale (Art. 78)</option>
+            </select>
+          </label>
+          <label>
+            Data
+            <input type="date" name="actionDate" required />
+          </label>
+          <label class="full">
+            Note
+            <textarea name="notes" rows="2"></textarea>
+          </label>
+          <button type="submit">Aggiungi azione</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>📊 Riepilogo Dashboard</h2>
+        <div id="kpi"></div>
+      </section>
+
+      <section class="card">
+        <h2>📁 Elenco Casi</h2>
+        <div id="cases-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <small>
+        Nota: l'analisi egosurfing è una pre-analisi locale assistita. Per web search reale integra un provider API server-side.
+      </small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
